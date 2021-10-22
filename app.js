@@ -39,7 +39,7 @@ function deleteTask(event) {
     //target näitab , mis elemendil klikati
     //.textContent näitab ka teksti sisu ja meil on lingi sisuks X
     //console.log(event.target.textContent);
-    if (event.target.textContent == 'X') {
+    if (event.target.textContent === 'X') {
         if (confirm('Do you want to delete this task?')) {
             //parentElement annab li elemendi, mitte enam targeti, mis oli a
             event.target.parentElement.remove();
