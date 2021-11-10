@@ -67,24 +67,35 @@ function deleteTaskFromLocalStorage(task) {
 }
 
 function deleteTask(event) {
-    //target näitab , mis elemendil klikati
-    //.textContent näitab ka teksti sisu ja meil on lingi sisuks X
+    //target shows what element was clicked
+    //.textContent shows also text and text is X
     //console.log(event.target.textContent);
     if (event.target.textContent === 'X') {
         if (confirm('Do you want to delete this task?')) {
-            //parentElement annab li elemendi, mitte enam targeti, mis oli a
+            //parentElement gives parent element which is li and not target which was a
             event.target.parentElement.remove();
             task = event.target.parentElement.firstChild.textContent;
             deleteTaskFromLocalStorage(task);
         }
-
     }
 }
 
 function deleteTasks(event) {
-    //console.log(event.target.previousElementSibling.innerHTML = '';
-    //taskList.innerHTML = '';
+    // console.log(event.target.previousElementSibling.innerHTML = '';
+    // taskList.innerHTML = '';
     while (taskList.firstChild) {
         taskList.removeChild(taskList.firstChild);
     }
+    deleteAllTasksFromLocalStorage();
+}
+
+function deleteAllTasksFromLocalStorage() {
+    // deletes all localStorage
+    // localStorage.clear();
+    if(localStorage.getItem('tasks') === null) {
+        let tasks = [];
+        // adds empty content
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+    localStorage.removeItem('tasks');
 }
